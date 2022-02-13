@@ -29,6 +29,6 @@ detect_os() {
 }
 
 cd "$ASDF_DOWNLOAD_PATH"
-curl -Lo oras.tar.gz https://github.com/oras-project/oras/releases/download/v${ASDF_INSTALL_VERSION}/oras_${ASDF_INSTALL_VERSION}_"$(detect_os)_"$(detect_arch)".tar.gz
+curl -Lo oras.tar.gz https://github.com/oras-project/oras/releases/download/v${ASDF_INSTALL_VERSION}/oras_${ASDF_INSTALL_VERSION}_"$(detect_os)"_"$(detect_arch)".tar.gz
 tar -xf oras.tar.gz
 rm oras.tar.gz
