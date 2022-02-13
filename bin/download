@@ -2,9 +2,33 @@
 
 set -euo pipefail
 
-echo "downloading to $ASDF_DOWNLOAD_PATH" > /tmp/asdf-oras.log
+detect_arch() {
+    machine=$(uname -m)
+    case "${machine}" in
+	x86_64)
+	    echo "amd64"
+	    ;;
+	aarch64)
+	    echo "arm64"
+	    ;;
+	*)
+	    echo "${machine}"
+	    ;;
+    esac
+}
+
+detect_os() {
+    case "$(uname)" in
+        Linux)
+            echo "linux"
+	    ;;
+        Darwin)
+            echo "darwin"
+	    ;;
+    esac
+}
+
 cd "$ASDF_DOWNLOAD_PATH"
-curl -Lo oras.tar.gz https://github.com/oras-project/oras/releases/download/v0.12.0/oras_0.12.0_linux_amd64.tar.gz
+curl -Lo oras.tar.gz https://github.com/oras-project/oras/releases/download/v${ASDF_INSTALL_VERSION}/oras_${ASDF_INSTALL_VERSION}_"$(detect_os)_"$(detect_arch)".tar.gz
 tar -xf oras.tar.gz
 rm oras.tar.gz
-ls -lhA >> /tmp/asdf-oras.log
