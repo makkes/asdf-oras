@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+mkdir -p "${ASDF_INSTALL_PATH}/bin"
+mv "${ASDF_DOWNLOAD_PATH}/oras" "${ASDF_INSTALL_PATH}/bin/"
+ls -lh "${ASDF_INSTALL_PATH}/bin" >> /tmp/asdf-oras.log
